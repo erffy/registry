@@ -184,7 +184,8 @@ jobs:
             });
             
             const botComment = comments.data.find(c => 
-              c.user?.type === 'Bot' && c.body?.includes('Thanks for contributing to Zig Index')
+              c.body?.includes('Thanks for contributing to Zig Index') &&
+              c.body?.includes('automated message')
             );
             
             if (!botComment) {
@@ -192,7 +193,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: prNumber,
-                body: body
+                body: body + '\n\n---\n*🤖 This is an automated message from the Zig Index bot.*'
               });
               console.log('Added welcome comment to PR #' + prNumber);
             } else {
@@ -235,7 +236,8 @@ jobs:
             });
             
             const removalComment = comments.data.find(c => 
-              c.user?.type === 'Bot' && c.body?.includes('Removal Request')
+              c.body?.includes('Removal Request') &&
+              c.body?.includes('automated message')
             );
             
             if (!removalComment) {
@@ -243,6 +245,6 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: prNumber,
-                body: body
+                body: body + '\n\n---\n*🤖 This is an automated message from the Zig Index bot.*'
               });
             }
